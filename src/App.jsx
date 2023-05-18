@@ -1,7 +1,6 @@
-import { useState , useLayoutEffect, useRef, useEffect} from 'react'
-// Import all of Bootstrap's CSS
+
+// Import all of Bootstrap's CSS and custom CSS
 import './App.scss'
-// Import our custom CSS
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
@@ -17,55 +16,32 @@ import "primeicons/primeicons.css";  //icons
 
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Home } from './pages/home/components/Home';
-// import { SignUp } from './pages/signup/components/SignUp';
-// import { Copyright } from './copyright/components/Copyright';
+import { Livre } from './pages/livre/components/Livre';
 
 
 
-// import { SignIn } from './pages/signin/components/SignIn';
-// import { UserInfo } from './userinfo/components/UserInfo';
-// import { Admin } from './pages/admin/components/Admin';
-// import { Footer } from './footer/components/Footer';
+
 
 function App() {
   const urls = [
     '/',
-    '/inscrire',
-    '/connecter',
-    '/admin',
-    '/sponsor',
-    '/media',
-    '/contact'
+    '/livre',
+    '/usagers',
+    '/emprunts'
+   
   ]
 
-  
-  const [user, setUser] = useState(null)
 
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     const uid = user.uid;
-  //     setUser(user)
-  //   } else {
-  //     setUser(null)
-  //   }
-  // });
+
 
   return (<>
 
-    <NavBar urls={urls} user={user} ></NavBar>
-{/* 
-{ user && 
-   <UserInfo user={user}></UserInfo>
-
-    } */}
+    <NavBar urls={urls}  ></NavBar>
     <Routes>
       
 <Route path={urls[0]} element={<Home urls={urls}></Home>}></Route>
-{/* <Route path={urls[1]} element={<SignUp></SignUp>}></Route>
-<Route path={urls[2]} element={<SignIn></SignIn>}></Route>
-<Route path={urls[3]} element={<Admin user={user} ></Admin>}></Route> */}
+<Route path={urls[1]} element={<Livre></Livre>}></Route>
+
    
    
     </Routes>
