@@ -9,8 +9,7 @@ import { NavBar } from './navbar/components/NavBar'
 import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";  //icons
-// import { auth } from './firebase';
-// import {  onAuthStateChanged } from "firebase/auth";
+
 
 
 
@@ -37,6 +36,8 @@ function App() {
   return (<>
 
     <NavBar urls={urls}  ></NavBar>
+
+    <div className='container mt-3'>
     <Routes>
       
 <Route path={urls[0]} element={<Home urls={urls}></Home>}></Route>
@@ -44,7 +45,7 @@ function App() {
 
    
    
-    </Routes>
+    </Routes></div>
    
 
 
