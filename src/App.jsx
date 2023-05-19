@@ -16,7 +16,7 @@ import "primeicons/primeicons.css";  //icons
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Home } from './pages/home/components/Home';
 import { Livre } from './pages/livre/components/Livre';
-
+import { User } from './pages/user/components/User';
 
 
 
@@ -30,28 +30,18 @@ function App() {
    
   ]
 
-
-
-
   return (<>
 
     <NavBar urls={urls}  ></NavBar>
 
     <div className='container mt-3'>
-    <Routes>
-      
-<Route path={urls[0]} element={<Home urls={urls}></Home>}></Route>
-<Route path={urls[1]} element={<Livre></Livre>}></Route>
-
-   
-   
-    </Routes></div>
-   
-
-
-
+      <Routes>
+        <Route path={urls[0]} element={<Home urls={urls}></Home>}></Route>
+        <Route path={urls[1]} element={<Livre></Livre>}></Route>
+        <Route path={urls[2]} element={<User></User>}></Route>
+      </Routes>
+    </div>
   </>
- 
   )
 }
 

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { LivreService } from '../services/LivreService';
+import { UserServices } from '../services/UserServices';
 import { Button } from 'primereact/button';
-import '../assets/style.scss'
-import { LivreDialog } from './LivreDialog';
-export const Livre = (props) => {
+//import '../assets/style.scss'
+import { UserDialog } from './UserDialog';
+export const User = (props) => {
 
 
     const STATUS = {
@@ -16,14 +16,14 @@ export const Livre = (props) => {
     const [status, setStatus] = useState(null)
     const [refresh, setRefresh] = useState()
     const [displayDialog, setDisplayDialog] = useState(false)
-    const livreService = new LivreService();
+    const userService = new UserServices();
 
     const [selectedRow, setSelectedRow] = useState(null);
 
-    const [livres, setLivres] = useState([])
+    const [users, setUsers] = useState([])
     useEffect(() => {
 
-        livreService.getAll()
+        userService.getAll()
             .then((querySnapshot) => {
 
                 let _data = []
@@ -31,7 +31,7 @@ export const Livre = (props) => {
                 querySnapshot.forEach((doc) => {
                     _data.push({...doc.data(), "id" : doc.id})
                 });
-                setLivres(_data)
+                setUsers(_data)
 
                 setLoading(false)
             })
@@ -86,23 +86,20 @@ export const Livre = (props) => {
 
     return (
         <>
-            <DataTable value={livres} paginator rows={10} dataKey="uid" filterDisplay="row" loading={loading} 
+            <DataTable value={users} paginator rows={10} dataKey="uid" filterDisplay="row" loading={loading} 
                 emptyMessage="Aucune inscription." size={'small'} className={"card"} header={
                     <button onClick={addClick} className="p-button p-button-sm p-button-success" icon="pi pi-plus">Add</button>}>
-
-                <Column field="titre" header="titre" filter />
-                <Column field="edition" header="edition" filter />
-                <Column field="nombre_exemple" header="nombre_exemple" filter />
-
-                <Column field="nombre_page" header="nombre_page" filter />
-                <Column field="numero" header="numero" filter />
-                <Column field="auteur" header="auteur" filter />
-
-                <Column field="actions" header="Actions" body={actionBody} />
+                    <Column field="nom" header="nom" filter />
+                    <Column field="prenom" header="prenom" filter />
+                    <Column field="adresse" header="adresse" filter />
+                    <Column field="status" header="status" filter />
+                    <Column field="email" header="email" filter />
+                    <Column field="actions" header="Actions" body={actionBody} />
             </DataTable>
 
-            <LivreDialog status={status} selectedRow={selectedRow} display={displayDialog}
-                setDisplay={setDisplayDialog} setRefresh={setRefresh} ></LivreDialog>
+            <UserDialog status={status} selectedRow={selectedRow} display={displayDialog}
+                setDisplay={setDisplayDialog} setRefresh={setRefresh} >
+            </UserDialog>
 
         </>
 

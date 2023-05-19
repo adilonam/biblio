@@ -7,17 +7,16 @@ import { useRef } from 'react';
 import { Toast } from 'primereact/toast';
 
 import { classNames } from 'primereact/utils';
-import { LivreService } from '../services/LivreService';
+import { UserServices } from '../services/UserServices';
 
-export const LivreDialog = (props) => {
+export const UserDialog = (props) => {
     const toast = useRef(null)
     const initData = {        
-        "titre": "",         
-        "edition": "",
-        "nombre_exemple": "",
-        "nombre_page": "",
-        "numero": "",
-        "auteur":""
+        "nom": "",         
+        "prenom": "",
+        "adresse": "",
+        "email": "",
+        "status": "",
     }
 
 
@@ -119,7 +118,7 @@ export const LivreDialog = (props) => {
 
 
  
-    const livreService = new LivreService()
+    const userService = new UserServices()
       
     const submitData = (data) => {
         let _summary = switchStatus("Ajouter avec succès", "Modifié avec succès", "Supprimer avec succès")
@@ -143,21 +142,21 @@ export const LivreDialog = (props) => {
 
     switch (props.status) {
         case 0:
-            livreService.create(data).then((resp) => {
+            userService.create(data).then((resp) => {
             successPost()
             }).catch((err)=>{
                 failedPost()
             })
             break;
         case 1:
-            livreService.update(data).then((resp) => {
+            userService.update(data).then((resp) => {
             successPost()
             }).catch((err)=>{
                 failedPost()
             })
             break;
         case 2:
-            livreService.delete(data).then((resp) => {
+            userService.delete(data).then((resp) => {
             successPost()
             }).catch((err)=>{
                 failedPost()
@@ -176,7 +175,7 @@ export const LivreDialog = (props) => {
     return (
         <>
             <Toast ref={toast} />
-            <Dialog header={() => switchStatus("Ajouter un Livre", `Modifier Livre N° ${props.selectedRow?.numero}`,
+            <Dialog header={() => switchStatus("Ajouter un usager", `Modifier Usager N° ${props.selectedRow?.numero}`,
                 `Supprimer Livre N° ${props.selectedRow?.numero}`)}
 
                 visible={props.display} style={{ width: '50vw' }} footer={renderFooter()} onHide={() => props.setDisplay(false)}>
@@ -185,12 +184,11 @@ export const LivreDialog = (props) => {
                
                <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2 ">
                     <div className="p-fluid p-formgrid p-grid">
-                        {customInputText("titre", "Titre")}
-                        {customInputText("edition", "Edition")}
-                        {customInputText("nombre_exemple", "Nb exemple")}
-                        {customInputText("nombre_page", "Nb page")}
-                        {customInputText("numero", "Numero")}
-                        {customInputText("auteur", "Auteur")}
+                        {customInputText("nom", "Nom")}
+                        {customInputText("prenom", "Prenom")}
+                        {customInputText("adresse", "Adresse")}
+                        {customInputText("status", "Status")}
+                        {customInputText("email", "Email")}
                     </div>
                 </form>
                 }

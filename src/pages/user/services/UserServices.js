@@ -1,18 +1,17 @@
-
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc, } from 'firebase/firestore';
 import { firestore } from "../../../firebase";
 
-export class LivreService {
+export class UserServices {
 
-    collectionName = "livre";
-    livreCollection = collection(firestore, this.collectionName)
+    collectionName = "user";
+    userCollection = collection(firestore, this.collectionName)
 
     create(data) {
-        return addDoc(this.livreCollection ,data);
+        return addDoc(this.userCollection ,data);
     }
 
     getAll(){ 
-        return getDocs(this.livreCollection);
+        return getDocs(this.userCollection);
     }
 
     update(data) {
