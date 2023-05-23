@@ -29,4 +29,10 @@ export class LivreService {
         return  deleteDoc(docRef,data )
     }
 
+
+    getById(id){
+        const docRef = doc(firestore, this.collectionName, id);
+        return getDoc(docRef)
+    }
+
 } 
