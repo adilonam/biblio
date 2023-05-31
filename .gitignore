@@ -52,8 +52,6 @@ dist-ssr
 
 
 
-#ignore lock package
-package-lock.json
 
 
 .env
