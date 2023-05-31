@@ -36,8 +36,8 @@ export const User = (props) => {
                 setLoading(false)
             })
             .catch((error) => {
-                    console.log("Error getting documents: ", error);
-                    setLoading(false)
+                console.log("Error getting documents: ", error);
+                setLoading(false)
             });
 
 
@@ -55,13 +55,12 @@ export const User = (props) => {
         setStatus(STATUS.EDIT)
         setDisplayDialog(true)
         setSelectedRow(rowData)
-
     }
+    
     const deleteClick = (rowData) => {
         setSelectedRow(rowData)
             setStatus(STATUS.DELETE)
             setDisplayDialog(true)
-     
     }
 
 
