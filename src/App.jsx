@@ -24,7 +24,7 @@ import { Emprunt } from './pages/emprunt/components/Emprunt';
 
 function App() {
   const urls = [
-    '/',
+    '/biblio/',
     '/livre',
     '/usagers',
     '/emprunts'
